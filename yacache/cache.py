@@ -19,7 +19,7 @@ def cache( default=False, ttlSeconds=None ):
     def _wrapper( foo, instance, args, kwargs ):
         key = _createDictKey( args, kwargs )
         if key in _dict and kwargs.get( "ttlSeconds", ttlSeconds ) is not None:
-            if ( dt.datetine.utcnow() - _dict[ key ][ "insertTime" ] ).total_seconds() > kwargs.get( "ttlSeconds", ttlSeconds ):
+            if ( dt.datetime.utcnow() - _dict[ key ][ "insertTime" ] ).total_seconds() > kwargs.get( "ttlSeconds", ttlSeconds ):
                 _dict.pop( key, None )
         if kwargs.get( "doNotCache", default ):
             _dict.pop( key, None )
